@@ -7,6 +7,14 @@
 [![GeoJSON Support](https://img.shields.io/badge/feature-GeoJSON-blue)](https://geojson.org/)
 [![Web Mercator](https://img.shields.io/badge/feature-Web%20Mercator-green)](https://en.wikipedia.org/wiki/Web_Mercator_projection)
 
+## DISCLAIMER
+
+⚠️ **EXPERIMENTAL LIBRARY - FOR LAB/PERSONAL USE** ⚠️
+
+This is an experimental library under active development. It is
+intended for research, learning, and personal projects. The API is subject
+to change!
+
 GhostMap is a high-performance Geographic Information System (GIS) library written in Zig, providing comprehensive spatial data processing, mapping, and geospatial analysis capabilities.
 
 ## Features

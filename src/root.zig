@@ -23,8 +23,8 @@ pub const Point = struct {
         const dlat = std.math.degreesToRadians(other.lat - self.lat);
         const dlng = std.math.degreesToRadians(other.lng - self.lng);
         const a = std.math.sin(dlat / 2) * std.math.sin(dlat / 2) +
-                  std.math.cos(std.math.degreesToRadians(self.lat)) * std.math.cos(std.math.degreesToRadians(other.lat)) *
-                  std.math.sin(dlng / 2) * std.math.sin(dlng / 2);
+            std.math.cos(std.math.degreesToRadians(self.lat)) * std.math.cos(std.math.degreesToRadians(other.lat)) *
+                std.math.sin(dlng / 2) * std.math.sin(dlng / 2);
         const c = 2 * std.math.atan2(std.math.sqrt(a), std.math.sqrt(1 - a));
         return earth_radius_km * c;
     }
@@ -52,7 +52,7 @@ pub const BoundingBox = struct {
     /// Create a bounding box from a polygon
     pub fn fromPolygon(polygon: Polygon) BoundingBox {
         if (polygon.len == 0) return .{ .min_lat = 0, .max_lat = 0, .min_lng = 0, .max_lng = 0 };
-        
+
         var min_lat = polygon[0].lat;
         var max_lat = polygon[0].lat;
         var min_lng = polygon[0].lng;
@@ -76,7 +76,7 @@ pub const BoundingBox = struct {
     /// Check if a point is inside the bounding box
     pub fn contains(self: BoundingBox, point: Point) bool {
         return point.lat >= self.min_lat and point.lat <= self.max_lat and
-               point.lng >= self.min_lng and point.lng <= self.max_lng;
+            point.lng >= self.min_lng and point.lng <= self.max_lng;
     }
 };
 
@@ -199,7 +199,7 @@ pub fn parseGeoJSONPolygon(allocator: std.mem.Allocator, json_str: []const u8) !
 
 /// Serialize a Point to GeoJSON string
 pub fn pointToGeoJSON(point: Point, allocator: std.mem.Allocator) ![]u8 {
-    return std.fmt.allocPrint(allocator, "{{\"type\":\"Point\",\"coordinates\":[{d:.6},{d:.6}]}}", .{point.lng, point.lat});
+    return std.fmt.allocPrint(allocator, "{{\"type\":\"Point\",\"coordinates\":[{d:.6},{d:.6}]}}", .{ point.lng, point.lat });
 }
 
 /// Project a WGS84 point to Web Mercator coordinates
@@ -229,7 +229,8 @@ pub fn polygonContainsPoint(polygon: Polygon, point: Point) bool {
         const pj = polygon[j];
 
         if (((pi.lng > point.lng) != (pj.lng > point.lng)) and
-            (point.lat < (pj.lat - pi.lat) * (point.lng - pi.lng) / (pj.lng - pi.lng) + pi.lat)) {
+            (point.lat < (pj.lat - pi.lat) * (point.lng - pi.lng) / (pj.lng - pi.lng) + pi.lat))
+        {
             inside = !inside;
         }
         j = i;

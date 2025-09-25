@@ -7,10 +7,10 @@ pub fn main() !void {
 
     // Demonstrate the library
     const point = try ghostmap.Point.init(40.7128, -74.0060);
-    std.debug.print("Created point: lat={d}, lng={d}\n", .{point.lat, point.lng});
+    std.debug.print("Created point: lat={d}, lng={d}\n", .{ point.lat, point.lng });
 
     const mercator = ghostmap.projectToWebMercator(point);
-    std.debug.print("Web Mercator: x={d}, y={d}\n", .{mercator.x, mercator.y});
+    std.debug.print("Web Mercator: x={d}, y={d}\n", .{ mercator.x, mercator.y });
 
     const rome = try ghostmap.Point.init(41.8919300, 12.5113300);
     const distance = point.distance(rome);
